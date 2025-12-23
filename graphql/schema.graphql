@@ -1,7 +1,7 @@
 type Query {
   getOrders(
     searchOptions: SearchOptions
-    sortBy: String
+    sort: SortOptions
     page: Int
     pageSize: Int
   ): OrdersList @auth(scope: PUBLIC)

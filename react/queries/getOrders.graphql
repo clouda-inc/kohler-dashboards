@@ -1,5 +1,5 @@
-query getOrders($searchOptions: SearchOptions, $sortBy: String, $page: Int, $pageSize: Int) {
-  getOrders(searchOptions: $searchOptions, sortBy: $sortBy, page: $page, pageSize: $pageSize){
+query getOrders($searchOptions: SearchOptions, $sort: SortOptions, $page: Int, $pageSize: Int) {
+  getOrders(searchOptions: $searchOptions, sort: $sort, page: $page, pageSize: $pageSize){
     items {
 			id
       poNumber

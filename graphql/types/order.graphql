@@ -30,6 +30,11 @@ input SearchOptions {
   brand: String
 }
 
+input SortOptions {
+  field: String
+  order: String
+}
+
 input OrderDataInput {
   id: String
   sapOrderNumber: String

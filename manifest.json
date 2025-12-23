@@ -1,7 +1,7 @@
 {
   "vendor": "eypartnerus",
   "name": "kohler-dashboards",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "title": "Kohler Dashboards",
   "description": "Kohler Dashboards",
   "builders": {
