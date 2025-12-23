@@ -1,0 +1,13 @@
+{
+  "memory": 256,
+  "ttl": 60,
+  "timeout": 60,
+  "minReplicas": 2,
+  "maxReplicas": 5,
+  "routes": {
+    "healthCheck": {
+      "path": "/_v/keep-a-live/sef/order-history/health",
+      "public": true
+    }
+  }
+}

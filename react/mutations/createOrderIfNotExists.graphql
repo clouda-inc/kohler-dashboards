@@ -1,0 +1,11 @@
+mutation CreateOrderIfNotExists($orderData: OrderDataInput) {
+  createOrderIfNotExists(orderData: $orderData) {
+    id
+    sapOrderNumber
+    poNumber
+    shipToAddress
+    skuNumber
+    createdDate
+    brand
+  }
+}

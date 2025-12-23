@@ -1,0 +1,16 @@
+type Query {
+  getOrders(
+    searchOptions: SearchOptions
+    sortBy: String
+    page: Int
+    pageSize: Int
+  ): OrdersList @auth(scope: PUBLIC)
+}
+
+type Mutation {
+  createOrderIfNotExists(
+    orderData: OrderDataInput
+  ): Order @auth(scope: PUBLIC)
+
+  createTestData(recordsCount: Int): Boolean  @auth(scope: PUBLIC)
+}

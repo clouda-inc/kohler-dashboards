@@ -1,0 +1,41 @@
+type Order {
+  id: String
+  sapOrderNumber: String
+  shipToAddress: String
+  createdDate: String
+  poNumber: String
+  skuNumber: String
+  brand: String
+}
+
+type Pagination {
+  pageSize: Int
+  page: Int
+  total: Int
+}
+
+type OrdersList {
+  items: [Order]
+  pagination: Pagination
+}
+
+input FilterDates {
+  from: String
+  to: String
+}
+
+input SearchOptions {
+  dateRange: FilterDates
+  searchQuery: String
+  brand: String
+}
+
+input OrderDataInput {
+  id: String
+  sapOrderNumber: String
+  shipToAddress: String
+  createdDate: String
+  poNumber: String
+  skuNumber: String
+  brand: String
+}

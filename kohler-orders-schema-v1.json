@@ -1,0 +1,70 @@
+{
+    "title": "Kohler Orders Basic Info",
+    "properties": {
+        "sapOrderNumber": {
+            "type": "string"
+        },
+        "shipToAddress": {
+            "type": "string"
+        },
+        "poNumber": {
+            "type": "string"
+        },
+        "skuNumber": {
+            "type": "string"
+        },
+        "brand": {
+            "type": "string"
+        },
+        "createdDate": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "sapOrderNumber"
+    ],
+    "v-default-fields": [
+        "sapOrderNumber",
+        "shipToAddress",
+        "poNumber",
+        "skuNumber",
+        "brand",
+        "createdDate"
+    ],
+    "v-indexed": [
+        "sapOrderNumber",
+        "poNumber",
+        "skuNumber",
+        "brand",
+        "createdDate"
+    ],
+    "v-security": {
+        "allowGetAll": false,
+        "publicRead": [
+            "id",
+            "sapOrderNumber",
+            "shipToAddress",
+            "poNumber",
+            "skuNumber",
+            "brand",
+            "createdDate"
+        ],
+        "publicWrite": [
+            "sapOrderNumber",
+            "shipToAddress",
+            "poNumber",
+            "skuNumber",
+            "brand",
+            "createdDate"
+        ],
+        "publicFilter": [
+            "id",
+            "sapOrderNumber",
+            "shipToAddress",
+            "poNumber",
+            "skuNumber",
+            "brand",
+            "createdDate"
+        ]
+    }
+}

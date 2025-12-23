@@ -1,0 +1,18 @@
+query getOrders($searchOptions: SearchOptions, $sortBy: String, $page: Int, $pageSize: Int) {
+  getOrders(searchOptions: $searchOptions, sortBy: $sortBy, page: $page, pageSize: $pageSize){
+    items {
+			id
+      poNumber
+      sapOrderNumber
+			skuNumber
+      shipToAddress
+      createdDate
+      brand
+    }
+    pagination {
+      page
+      pageSize
+      total
+    }
+  }
+}

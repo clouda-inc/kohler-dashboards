@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "moment": "^2.30.1",
+    "ramda": "^0.26.1",
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-tools": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.25",
+    "@types/node": "^20.0.0",
+    "@types/ramda": "types/npm-ramda#dist",
+    "@vtex/api": "^7.0.0",
+    "tslint": "^5.12.0",
+    "tslint-config-vtex": "^2.1.0",
+    "typescript": "5.5.3",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@1.0.1/public/@types/vtex.css-handles",
+    "vtex.product-comparison": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-comparison@0.20.0/public/@types/vtex.product-comparison",
+    "vtex.product-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.1/public/@types/vtex.product-context",
+    "vtex.product-identifier": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-identifier@0.5.0/public/@types/vtex.product-identifier",
+    "vtex.product-list-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-list-context@0.4.1/public/@types/vtex.product-list-context",
+    "vtex.product-summary": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-summary@2.91.0/public/@types/vtex.product-summary",
+    "vtex.product-summary-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-summary-context@0.13.0/public/@types/vtex.product-summary-context",
+    "vtex.search-page-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-page-context@0.2.0/public/@types/vtex.search-page-context",
+    "vtex.search-result": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-result@3.141.2/public/@types/vtex.search-result",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.16/public/@types/vtex.styleguide"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit && tslint -c tslint.json './**/*.ts'"
+  },
+  "version": "0.2.1"
+}
