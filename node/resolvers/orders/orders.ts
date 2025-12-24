@@ -134,12 +134,22 @@ export const mutations = {
     const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego']
     const states = ['NY', 'CA', 'IL', 'TX', 'AZ', 'PA', 'TX', 'CA']
 
+    // Create a pool of SKU numbers to be shared across orders
+    const skuPool = Array.from({ length: Math.ceil(recordsCount * 1.5) }, () => `SKU-${Math.floor(Math.random() * 9999999)}`)
+
     for (let i = 0; i < recordsCount; i++) {
       const sapOrderNumber = `SAP-${Date.now()}-${i}`
       const poNumber = `PO-${Math.floor(Math.random() * 1000000)}`
-      const skuCount = Math.floor(Math.random() * 5) + 1
-      const skuList = Array.from({ length: skuCount }, () => `SKU-Tap-${Math.floor(Math.random() * 9999999)}`)
-      const skuNumber = skuList.join('|')
+      const skuCount = Math.floor(Math.random() * 15) + 1
+
+      // Select random unique SKUs from the pool for this order
+      const selectedSkus = new Set<string>()
+      while (selectedSkus.size < Math.min(skuCount, skuPool.length)) {
+        const randomIndex = Math.floor(Math.random() * skuPool.length)
+        selectedSkus.add(skuPool[randomIndex])
+      }
+
+      const skuNumber = Array.from(selectedSkus).join('|')
       const brandIndex = Math.floor(Math.random() * brands.length)
       const cityIndex = Math.floor(Math.random() * cities.length)
       const zipCode = Math.floor(10000 + Math.random() * 90000)
