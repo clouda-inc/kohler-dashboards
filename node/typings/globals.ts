@@ -11,6 +11,8 @@ interface FilterDates {
 interface SearchOptions {
   dateRange: FilterDates
   searchQuery: String
+  userId: String
+  soldToId: String
   brand: String
 }
 

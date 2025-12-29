@@ -18,7 +18,9 @@ export const queries = {
       searchOptions:
       {
         searchQuery,
-        brand
+        brand,
+        userId,
+        soldToId,
       },
       page = 1,
       pageSize = 10,
@@ -38,6 +40,14 @@ export const queries = {
 
     if (brand) {
       whereClauses.push(`brand=${encodeURIComponent(brand.toString())}`)
+    }
+
+    if (userId) {
+      whereClauses.push(`userId=${encodeURIComponent(userId.toString())}`)
+    }
+
+    if (soldToId) {
+      whereClauses.push(`soldToId=${encodeURIComponent(soldToId.toString())}`)
     }
 
     const whereClause = whereClauses.join(' AND ')

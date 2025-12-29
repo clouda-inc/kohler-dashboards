@@ -1,6 +1,8 @@
 mutation CreateOrderIfNotExists($orderData: OrderDataInput) {
   createOrderIfNotExists(orderData: $orderData) {
     id
+    soldToId
+    userId
     sapOrderNumber
     poNumber
     shipToAddress

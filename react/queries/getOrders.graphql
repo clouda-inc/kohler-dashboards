@@ -2,6 +2,8 @@ query getOrders($searchOptions: SearchOptions, $sort: SortOptions, $page: Int, $
   getOrders(searchOptions: $searchOptions, sort: $sort, page: $page, pageSize: $pageSize){
     items {
 			id
+      userId
+      soldToId
       poNumber
       sapOrderNumber
 			skuNumber

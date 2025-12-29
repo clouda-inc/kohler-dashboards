@@ -22,6 +22,8 @@ const OrderList: React.FC = () => {
     searchOptions: {
       searchQuery: '',
       brand: '',
+      userId: '',
+      soldToId: '',
       dateRange: {
         from: '',
         to: '',

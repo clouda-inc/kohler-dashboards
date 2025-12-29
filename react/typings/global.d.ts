@@ -1,5 +1,7 @@
 export interface Order {
   id: string
+  soldToId: string
+  userId: string
   sapOrderNumber: string
   shipToAddress: string
   createdDate: string
@@ -28,6 +30,8 @@ export interface SearchOptions {
   dateRange: FilterDates
   searchQuery: string
   brand: string
+  userId: string
+  soldToId: string
 }
 
 export interface SortOptions {
@@ -37,6 +41,8 @@ export interface SortOptions {
 
 export interface OrderDataInput {
   id: string
+  soldToId: string
+  userId: string
   sapOrderNumber: string
   shipToAddress: string
   createdDate: string

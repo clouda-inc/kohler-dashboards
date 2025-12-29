@@ -1,5 +1,7 @@
 type Order {
   id: String
+  userId: String
+  soldToId: String
   sapOrderNumber: String
   shipToAddress: String
   createdDate: String
@@ -28,6 +30,8 @@ input SearchOptions {
   dateRange: FilterDates
   searchQuery: String
   brand: String
+  soldToId: String
+  userId: String
 }
 
 input SortOptions {
@@ -37,6 +41,8 @@ input SortOptions {
 
 input OrderDataInput {
   id: String
+  userId: String
+  soldToId: String
   sapOrderNumber: String
   shipToAddress: String
   createdDate: String
