@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-apollo'
 
 import GET_ORDERS from './queries/getOrders.graphql'
@@ -6,6 +6,7 @@ import { OrdersList, SearchOptions, SortOptions } from './typings/global'
 import SearchBar from './components/SearchBar/SearchBar'
 import OrdersTable from './components/OrdersTable/OrdersTable'
 import Pagination from './components/Pagination/Pagination'
+import 'url-search-params-polyfill'
 
 const BRANDS_TO_FILTER = ['Kohler', 'Moen', 'Delta', 'American Standard', 'Grohe', 'Pfister', 'Hansgrohe', 'Toto', 'Brizo', 'Rohl']
 const USER_IDS_TO_FILTER = [
@@ -33,26 +34,67 @@ interface QueryVariables {
   sort: SortOptions
 }
 
-const OrderList: React.FC = () => {
-  const [queryVariables, setQueryVariables] = useState<QueryVariables>({
+const getInitialStateFromUrl = (): QueryVariables => {
+  const params = new URLSearchParams(window?.location?.search ?? '')
+
+  return {
     searchOptions: {
-      searchQuery: '',
-      brand: '',
-      userId: '',
-      soldToId: '',
+      searchQuery: params?.get('searchQuery') || '',
+      brand: params?.get('brand') || '',
+      userId: params?.get('userId') || '',
+      soldToId: params?.get('soldToId') || '',
       dateRange: {
-        from: '',
-        to: '',
+        from: params?.get('dateFrom') || '',
+        to: params?.get('dateTo') || '',
       },
     },
-    page: 1,
-    pageSize: 10,
-    sortBy: 'createdDate',
+    page: parseInt(params?.get('page') || '1', 10),
+    pageSize: parseInt(params?.get('pageSize') || '10', 10),
+    sortBy: params?.get('sortBy') || 'createdDate',
     sort: {
-      field: 'createdDate',
-      order: 'DESC',
+      field: params?.get('sortField') || 'createdDate',
+      order: params?.get('sortOrder') || 'DESC',
     },
-  })
+  }
+}
+
+const updateUrlParams = (queryVariables: QueryVariables) => {
+  const params = new URLSearchParams()
+
+  // if (queryVariables.searchOptions.searchQuery) {
+  //   params.set('searchQuery', queryVariables.searchOptions.searchQuery)
+  // }
+  // if (queryVariables.searchOptions.brand) {
+  //   params.set('brand', queryVariables.searchOptions.brand)
+  // }
+  // if (queryVariables.searchOptions.userId) {
+  //   params.set('userId', queryVariables.searchOptions.userId)
+  // }
+  // if (queryVariables.searchOptions.soldToId) {
+  //   params.set('soldToId', queryVariables.searchOptions.soldToId)
+  // }
+  // if (queryVariables.searchOptions.dateRange.from) {
+  //   params.set('dateFrom', queryVariables.searchOptions.dateRange.from)
+  // }
+  // if (queryVariables.searchOptions.dateRange.to) {
+  //   params.set('dateTo', queryVariables.searchOptions.dateRange.to)
+  // }
+
+  params.set('page', queryVariables.page.toString())
+  params.set('pageSize', queryVariables.pageSize.toString())
+  // params.set('sortField', queryVariables.sort.field)
+  // params.set('sortOrder', queryVariables.sort.order)
+
+  window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`)
+}
+
+
+const OrderList: React.FC = () => {
+  const [queryVariables, setQueryVariables] = useState<QueryVariables>(getInitialStateFromUrl)
+
+  useEffect(() => {
+    updateUrlParams(queryVariables)
+  }, [queryVariables])
 
   const { data, loading, error } = useQuery(GET_ORDERS, {
     variables: {
@@ -93,6 +135,7 @@ const OrderList: React.FC = () => {
         field,
         order,
       },
+      page: 1,
     }))
   }
 

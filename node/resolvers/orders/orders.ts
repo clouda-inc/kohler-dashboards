@@ -27,6 +27,8 @@ export const queries = {
       sort: { field, order } = {}
     } = args
 
+    console.log('>>> Fetching orders with args:', args)
+
     const { clients: { masterdata } } = ctx
 
     const whereClauses = []
