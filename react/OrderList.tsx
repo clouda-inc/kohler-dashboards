@@ -8,6 +8,12 @@ import OrdersTable from './components/OrdersTable/OrdersTable'
 import Pagination from './components/Pagination/Pagination'
 
 const BRANDS_TO_FILTER = ['Kohler', 'Moen', 'Delta', 'Grohe', 'Faucet']
+const USER_IDS_TO_FILTER = ['USR-00102', 'USR-00559', 'USR-01165']
+const SOLD_TO_IDS_TO_FILTER = [
+  'SOLD-TO-00001',
+  'SOLD-TO-00101',
+  'SOLD-TO-00200',
+]
 
 interface QueryVariables {
   searchOptions: SearchOptions
@@ -51,20 +57,27 @@ const OrderList: React.FC = () => {
   const orders = (data?.getOrders as OrdersList)?.items || []
   const pagination = (data?.getOrders as OrdersList)?.pagination
 
-  const handleSearch = (searchQuery: string, brand: string) => {
-    setQueryVariables(prev => ({
+  const handleSearch = (
+    searchQuery: string,
+    brand: string,
+    userId: string,
+    soldToId: string
+  ) => {
+    setQueryVariables((prev) => ({
       ...prev,
       searchOptions: {
         ...prev.searchOptions,
         searchQuery,
         brand,
+        userId,
+        soldToId,
       },
       page: 1,
     }))
   }
 
   const handleSort = (field: string, order: string) => {
-    setQueryVariables(prev => ({
+    setQueryVariables((prev) => ({
       ...prev,
       sort: {
         field,
@@ -74,7 +87,7 @@ const OrderList: React.FC = () => {
   }
 
   const handlePageChange = (page: number, pageSize: number) => {
-    setQueryVariables(prev => ({
+    setQueryVariables((prev) => ({
       ...prev,
       page,
       pageSize,
@@ -87,7 +100,12 @@ const OrderList: React.FC = () => {
     <div style={{ padding: '20px' }}>
       <h1>Order List</h1>
 
-      <SearchBar brands={BRANDS_TO_FILTER} onSearch={handleSearch} />
+      <SearchBar
+        brands={BRANDS_TO_FILTER}
+        userIds={USER_IDS_TO_FILTER}
+        soldToIds={SOLD_TO_IDS_TO_FILTER}
+        onSearch={handleSearch}
+      />
 
       {loading ? (
         <p>Loading...</p>
@@ -101,7 +119,10 @@ const OrderList: React.FC = () => {
           />
 
           {pagination && (
-            <Pagination pagination={pagination} onPageChange={handlePageChange} />
+            <Pagination
+              pagination={pagination}
+              onPageChange={handlePageChange}
+            />
           )}
         </>
       )}
