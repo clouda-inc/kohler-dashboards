@@ -164,6 +164,9 @@ export const mutations = {
       const cityIndex = Math.floor(Math.random() * cities.length)
       const zipCode = Math.floor(10000 + Math.random() * 90000)
 
+      // ================================================
+      // TODO: add usearId and soldToId fields
+      // Update before creating new order data
       const testOrder: InputOrder = {
         sapOrderNumber,
         shipToAddress: `${Math.floor(Math.random() * 9999)} Main St, ${cities[cityIndex]}, ${states[cityIndex]} ${zipCode}`,
