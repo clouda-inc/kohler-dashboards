@@ -6,6 +6,10 @@ interface PaginationProps {
     onPageChange: (page: number, pageSize: number) => void
 }
 
+const formatNumber = (num: number): string => {
+    return num.toLocaleString('en-US')
+}
+
 const Pagination: React.FC<PaginationProps> = ({ pagination, onPageChange }) => {
     const [pageSize, setPageSize] = useState(pagination.pageSize)
     const { page, total } = pagination
@@ -121,7 +125,7 @@ const Pagination: React.FC<PaginationProps> = ({ pagination, onPageChange }) => 
                                 fontWeight: pageNum === page ? 'bold' : 'normal',
                             }}
                         >
-                            {pageNum}
+                            {formatNumber(pageNum as number)}
                         </button>
                     )
                 )}
@@ -144,7 +148,7 @@ const Pagination: React.FC<PaginationProps> = ({ pagination, onPageChange }) => 
             </div>
 
             <div style={{ fontSize: '14px', color: '#666' }}>
-                Page {page} of {totalPages} ({total} total items)
+                Page {formatNumber(page)} of {formatNumber(totalPages)} ({formatNumber(total)} total items)
             </div>
         </div>
     )
